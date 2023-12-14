@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://ws" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ax21="http://model/xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:ns1="http://org.apache.axis2/xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://ws">
+<wsdl:documentation> Please Type your service description here </wsdl:documentation>
+<wsdl:types>
+<xs:schema xmlns:ax22="http://model/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://ws">
+<xs:import namespace="http://model/xsd"/>
+<xs:element name="getEnseignantByMatricule">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="matricule" type="xs:long"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getEnseignantByMatriculeResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element minOccurs="0" name="return" nillable="true" type="ax22:Enseignant"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAllEnseignants">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="getAllEnseignantsResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="return" nillable="true" type="ax22:Enseignant"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+</xs:schema>
+<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://model/xsd">
+<xs:complexType name="Enseignant">
+<xs:sequence>
+<xs:element minOccurs="0" name="conjoint" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="dateNaissace" nillable="true" type="xs:date"/>
+<xs:element minOccurs="0" name="dateRecrutment" nillable="true" type="xs:date"/>
+<xs:element minOccurs="0" name="departementAffectation" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="diplomeRecrutment" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="echelons" nillable="true" type="xs:anyType"/>
+<xs:element minOccurs="0" name="enfantCharge" type="xs:int"/>
+<xs:element minOccurs="0" name="etatActual" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="lieuNaissance" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="matricule" nillable="true" type="xs:long"/>
+<xs:element minOccurs="0" name="nom" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="prenom" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="promotions" nillable="true" type="xs:anyType"/>
+<xs:element minOccurs="0" name="sexe" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="situationFamille" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getEnseignantByMatriculeRequest">
+<wsdl:part name="parameters" element="ns:getEnseignantByMatricule"/>
+</wsdl:message>
+<wsdl:message name="getEnseignantByMatriculeResponse">
+<wsdl:part name="parameters" element="ns:getEnseignantByMatriculeResponse"/>
+</wsdl:message>
+<wsdl:message name="getAllEnseignantsRequest">
+<wsdl:part name="parameters" element="ns:getAllEnseignants"/>
+</wsdl:message>
+<wsdl:message name="getAllEnseignantsResponse">
+<wsdl:part name="parameters" element="ns:getAllEnseignantsResponse"/>
+</wsdl:message>
+<wsdl:portType name="EnseignantWebServicePortType">
+<wsdl:operation name="getEnseignantByMatricule">
+<wsdl:input message="ns:getEnseignantByMatriculeRequest" wsaw:Action="urn:getEnseignantByMatricule"/>
+<wsdl:output message="ns:getEnseignantByMatriculeResponse" wsaw:Action="urn:getEnseignantByMatriculeResponse"/>
+</wsdl:operation>
+<wsdl:operation name="getAllEnseignants">
+<wsdl:input message="ns:getAllEnseignantsRequest" wsaw:Action="urn:getAllEnseignants"/>
+<wsdl:output message="ns:getAllEnseignantsResponse" wsaw:Action="urn:getAllEnseignantsResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="EnseignantWebServiceSoap11Binding" type="ns:EnseignantWebServicePortType">
+<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="getEnseignantByMatricule">
+<soap:operation soapAction="urn:getEnseignantByMatricule" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEnseignants">
+<soap:operation soapAction="urn:getAllEnseignants" style="document"/>
+<wsdl:input>
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="EnseignantWebServiceSoap12Binding" type="ns:EnseignantWebServicePortType">
+<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+<wsdl:operation name="getEnseignantByMatricule">
+<soap12:operation soapAction="urn:getEnseignantByMatricule" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEnseignants">
+<soap12:operation soapAction="urn:getAllEnseignants" style="document"/>
+<wsdl:input>
+<soap12:body use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap12:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:binding name="EnseignantWebServiceHttpBinding" type="ns:EnseignantWebServicePortType">
+<http:binding verb="POST"/>
+<wsdl:operation name="getEnseignantByMatricule">
+<http:operation location="getEnseignantByMatricule"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="getAllEnseignants">
+<http:operation location="getAllEnseignants"/>
+<wsdl:input>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:input>
+<wsdl:output>
+<mime:content type="application/xml" part="parameters"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EnseignantWebService">
+<wsdl:port name="EnseignantWebServiceHttpSoap11Endpoint" binding="ns:EnseignantWebServiceSoap11Binding">
+<soap:address location="http://localhost:8082/Application1/services/EnseignantWebService.EnseignantWebServiceHttpSoap11Endpoint/"/>
+</wsdl:port>
+<wsdl:port name="EnseignantWebServiceHttpSoap12Endpoint" binding="ns:EnseignantWebServiceSoap12Binding">
+<soap12:address location="http://localhost:8082/Application1/services/EnseignantWebService.EnseignantWebServiceHttpSoap12Endpoint/"/>
+</wsdl:port>
+<wsdl:port name="EnseignantWebServiceHttpEndpoint" binding="ns:EnseignantWebServiceHttpBinding">
+<http:address location="http://localhost:8082/Application1/services/EnseignantWebService.EnseignantWebServiceHttpEndpoint/"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

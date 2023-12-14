@@ -1,0 +1,35 @@
+<project name="Axis2Client" basedir="." default="generate.client">
+
+    <property environment="env"/>
+    <property name="build.dir" value="build"/>
+    <property name="src.dir" value="src/main/java"/>
+    <property name="wsdl.file" value="src/main/webapp/EnseignantWebService.wsdl"/>
+    <property name="axis2.home" value="C:/Tools/axis2-1.6.2-bin/axis2-1.6.2"/>
+    
+    <path id="axis2.classpath">
+        <fileset dir="${axis2.home}">
+            <include name="lib/*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="compile.client">
+        <mkdir dir="${build.dir}/classes"/>
+        <javac debug="on"
+               destdir="${build.dir}/classes"
+               srcdir="${src.dir}"
+               classpathref="axis2.classpath">
+        </javac>
+    </target>
+
+    <target name="generate.client" depends="compile.client">
+        <taskdef name="wsdl2java"
+                 classname="org.apache.axis2.tool.ant.AntCodegenTask"
+                 classpathref="axis2.classpath"/>
+        <wsdl2java wsdlfilename="${wsdl.file}" output="${src.dir}" package="ws">
+        </wsdl2java>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build.dir}"/>
+    </target>
+</project>
